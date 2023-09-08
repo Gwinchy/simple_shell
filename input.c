@@ -21,6 +21,7 @@ int main(void)
 	while (1)
 	{
 		display_prompt();
+
 		if (fgets(input, sizeof(input), stdin) == NULL)
 		{
 			printf("\nExiting!\n");

@@ -6,4 +6,5 @@
 #include <string.h>
 #include <sys/wait.h>
 void display_prompt();
+int arguments(void);
 #endif

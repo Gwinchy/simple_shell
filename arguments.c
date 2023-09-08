@@ -2,64 +2,47 @@
 #define MAX_INPUT_SIZE 1024
 #define MAX_ARG_SIZE 64
 /**
- * display_prompt - displays user input
- * Return: user input
+ * arguments - handles arguments
+ * Return: execute argguments
  */
-void display_prompt(void)
+int arguments(void)
 {
-	printf("simple_shell...$ ");
-}
-/**
- * main - starting point
- * Return: printed input
- */
-int main(void)
-{
-	int status;
 	char input[MAX_INPUT_SIZE];
 	char *args[MAX_ARG_SIZE];
 	pid_t pid;
 	char *token;
 	int arg_count = 0;
 
-	while (1)
+	if (fgets(input, MAX_INPUT_SIZE, stdin) == NULL)
 	{
-		display_prompt();
-		if (fgets(input, sizeof(input), stdin) == NULL)
+		perror("fgets");
+		exit(EXIT_FAILURE);
+	}
+	token = strtok(input, "\t\n");
+	while (token != NULL)
+	{
+		args[arg_count] = token;
+		arg_count++;
+		if (arg_count >= MAX_ARG_SIZE - 1)
 		{
-			printf("\nExiting!\n");
+			fprintf(stderr, "Too many arguments!\n");
 			break;
 		}
-		input[strcspn(input, "\n")] = '\0';
-		token = strtok(input, " ");
-		while (token != NULL)
-		{
-			args[arg_count] = token;
-			arg_count++;
-			if (arg_count >= MAX_ARG_SIZE -1)
-			{
-				printf(stderr, "Too many arguments!'\n");
-				break;
-			}
-			token = strtok(NULL, " ");
-		}
-		args[arg_count] = NULL;
-		pid = fork();
-		if (pid == -1)
-		{
-			perror("fork");
-			exit(EXIT_FAILURE);
-		}
-		else if (pid == 0)
-		{
-			execvp(args[0], args);
-			perror("exec");
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			waitpid(pid, &status, 0);
-		}
+		token = strtok(NULL, " ");
+	}
+	args[arg_count] = NULL;
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("fork");
+		exit(EXIT_FAILURE);
+	}
+	else if (pid == 0)
+	{
+		execvp(args[0], args);
+		perror("exec");
+		exit(EXIT_FAILURE);
+
 	}
 	return (0);
 }
