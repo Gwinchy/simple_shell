@@ -1,6 +1,4 @@
 #include "shell.h"
-#define MAX_INPUT_SIZE 1024
-#define MAX_ARG_SIZE 64
 /**
  * arguments - handles arguments
  * Return: execute argguments
