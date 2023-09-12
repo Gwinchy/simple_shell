@@ -6,13 +6,13 @@
  */
 void display_prompt(void)
 {
-	printf("$ ");
+	printf("simple_shell...$ ");
 }
 /**
  * main - starting point
  * Return: printed input
  */
-int main(void)
+int main(int argc, char *argv[])
 {
 	int status;
 	char input[MAX_INPUT_SIZE];
@@ -21,13 +21,14 @@ int main(void)
 	while (1)
 	{
 		display_prompt();
+
 		if (fgets(input, sizeof(input), stdin) == NULL)
 		{
 			printf("\nExiting!\n");
 			break;
 		}
 		input[strcspn(input, "\n")] = '\0';
-		arguments();
+		process_arguments(input);
 		pid = fork();
 		if (pid == -1)
 		{
@@ -37,7 +38,7 @@ int main(void)
 		else if (pid == 0)
 		{
 			execlp(input, input, NULL);
-			perror("execlp");
+			perror("exec");
 			exit(EXIT_FAILURE);
 		}
 		else
