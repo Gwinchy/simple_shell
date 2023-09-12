@@ -10,6 +10,8 @@ void display_prompt(void)
 }
 /**
  * main - starting point
+ * @argc: argument count
+ * @argv: argument array/list
  * Return: printed input
  */
 int main(int argc, char *argv[])
