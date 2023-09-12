@@ -12,7 +12,7 @@ void display_prompt(void)
  * main - starting point
  * Return: printed input
  */
-int main(void)
+int main(int argc, char *argv[])
 {
 	int status;
 	char input[MAX_INPUT_SIZE];
@@ -28,6 +28,7 @@ int main(void)
 			break;
 		}
 		input[strcspn(input, "\n")] = '\0';
+		process_arguments(input);
 		pid = fork();
 		if (pid == -1)
 		{

@@ -27,6 +27,7 @@ int main(void)
 			break;
 		}
 		input[strcspn(input, "\n")] = '\0';
+		arguments();
 		pid = fork();
 		if (pid == -1)
 		{
@@ -36,7 +37,7 @@ int main(void)
 		else if (pid == 0)
 		{
 			execlp(input, input, NULL);
-			perror("exec");
+			perror("execlp");
 			exit(EXIT_FAILURE);
 		}
 		else

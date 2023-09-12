@@ -8,5 +8,5 @@
 #define MAX_INPUT_SIZE 1024
 #define MAX_ARG_SIZE 64
 void display_prompt(void);
-int arguments(void);
+void process_arguments(char *input);
 #endif

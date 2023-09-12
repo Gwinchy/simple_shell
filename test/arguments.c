@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * main - Starting point
+ * arguments - Starting point
  *
  * Return: 0 Always successful
  */
 
-int main(void)
+int arguments(void)
 {
 	char *command;
 	char *argv[4];
@@ -14,7 +14,10 @@ int main(void)
 	pid_t pid;
 
 	command = "/simple_shell/ex_path/my-exe";
-	argv[] = {command, "arg1", "arg2", NULL};
+	argv[0] = command;
+	argv[1] = "arg1";
+	argv[2] = "arg2";
+	argv[3] = "NULL";
 	if (access(command, X_OK) == -1)
 	{
 		perror("command not found");
