@@ -31,7 +31,7 @@ void process_arguments(char *input)
 	}
 	else if (pid == 0)
 	{
-		execvp(args[0], args);
+		execve(args[0], args, NULL);
 		perror("exec");
 		exit(EXIT_FAILURE);
 	}

@@ -25,10 +25,16 @@ int main(void)
 		if (fgets(input, sizeof(input), stdin) == NULL)
 		{
 			printf("\nExiting!\n");
-			break;
+			perror("null");
+			exit(EXIT_FAILURE);
 		}
 		input[strcspn(input, "\n")] = '\0';
-		process_arguments(input);
+		if (strcmp(input, "exit") == 0)
+		{
+			printf("Exiting my simple Shell...\n\n\n");
+			exit(EXIT_SUCCESS);
+		}
+		get_path(input);
 		pid = fork();
 		if (pid == -1)
 		{
@@ -37,8 +43,7 @@ int main(void)
 		}
 		else if (pid == 0)
 		{
-			devnull();
-			execlp(input, input, NULL);
+			process_arguments(input);
 			perror("exec");
 			exit(EXIT_FAILURE);
 		}

@@ -11,4 +11,5 @@
 void display_prompt(void);
 void process_arguments(char *input);
 void devnull(void);
+void get_path(char *input);
 #endif
