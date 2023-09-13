@@ -2,19 +2,17 @@
 #define MAX_INPUT_SIZE 1024
 /**
  * display_prompt - displays user input
- * Return: user input
  */
 void display_prompt(void)
 {
 	printf("simple_shell...$ ");
+	fflush(stdout);
 }
 /**
  * main - starting point
- * @argc: argument count
- * @argv: argument array/list
  * Return: printed input
  */
-int main(int argc, char *argv[])
+int main(void)
 {
 	int status;
 	char input[MAX_INPUT_SIZE];
@@ -39,6 +37,7 @@ int main(int argc, char *argv[])
 		}
 		else if (pid == 0)
 		{
+			devnull();
 			execlp(input, input, NULL);
 			perror("exec");
 			exit(EXIT_FAILURE);
