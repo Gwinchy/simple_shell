@@ -17,11 +17,15 @@ int main(void)
 	int status;
 	char input[MAX_INPUT_SIZE];
 	pid_t pid;
+	char *token;
+	char *command;
+	char *location;
+	char *prompt;
+	char *args[2];
 
 	while (1)
 	{
 		display_prompt();
-
 		if (fgets(input, sizeof(input), stdin) == NULL)
 		{
 			printf("\nExiting!\n");
@@ -34,22 +38,34 @@ int main(void)
 			printf("Exiting my simple Shell...\n\n\n");
 			exit(EXIT_SUCCESS);
 		}
-		get_path(input);
-		pid = fork();
-		if (pid == -1)
+		token = strtok(input, " \t");
+		while (token != NULL)
 		{
-			perror("fork");
-			exit(EXIT_FAILURE);
-		}
-		else if (pid == 0)
-		{
-			process_arguments(input);
-			perror("exec");
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			waitpid(pid, &status, 0);
+			command = token;
+			location = get_location(command);
+			prompt = location;
+			if (location != NULL)
+			{
+				pid = fork();
+				if (pid == -1)
+				{
+					perror("fork");
+					exit(EXIT_FAILURE);
+				}
+				else if (pid == 0)
+				{
+					args[0] = prompt;
+					args[1] = NULL;
+					execmd(args);
+					perror("execve");
+					exit(EXIT_FAILURE);
+				}
+				else
+				{
+					waitpid(pid, &status, 0);
+				}
+			}
+			token = strtok(NULL, " \t");
 		}
 	}
 	return (0);

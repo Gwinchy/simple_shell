@@ -6,10 +6,13 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #define MAX_INPUT_SIZE 1024
 #define MAX_ARG_SIZE 64
 void display_prompt(void);
 void process_arguments(char *input);
 void devnull(void);
-void get_path(char *input);
+char *get_location(char *command);
+void execmd(char **argv);
 #endif
