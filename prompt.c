@@ -1,16 +1,9 @@
 #include "shell.h"
 /**
- * prompt - prints prompt to screen
- * Return: void
+ * prompt - displays comp name
+ * Return: Void
  */
-
 void prompt(void)
 {
-	char text[] = "Simple_shell_$	";
-	int i;
-
-	for (i = 0; text[i] != '\0'; i++)
-	{
-		_putchar(text[i]);
-	}
+	printf("simple_shell_$  ");
 }

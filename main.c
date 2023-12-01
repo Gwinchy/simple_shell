@@ -7,9 +7,17 @@
  */
 int main(int argc, char **argv)
 {
+	char input[MAX_INPUT_SIZE];
+	char *args[MAX_ARGS];
+
 	while (1)
 	{
 		prompt();
+		if (fgets(input, sizeof(input), stdin) == NULL)
+		{
+			break;
+		}
+		token(input, args);
 	}
 	return (0);
 }

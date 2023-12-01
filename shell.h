@@ -9,7 +9,9 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-ssize_t _putchar(char c);
+#include <string.h>
+#define MAX_INPUT_SIZE 1014
+#define MAX_ARGS 256
 void prompt(void);
-
+void token(char input[], char *args[]);
 #endif
