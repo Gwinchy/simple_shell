@@ -18,8 +18,6 @@ int main(int argc, char **argv)
 			break;
 		}
 		token(input, args);
-		/*commands(argv[0], args);
-		 * this was causing a duplicate error*/
 		handle_command(args[0], args);
 	}
 	return (0);

@@ -9,7 +9,6 @@ void commands(char *cmd, char *args[])
 {
 	pid_t pid;
 	int status;
-	extern char **environ;
 
 	pid = fork();
 	if (pid == 0)
