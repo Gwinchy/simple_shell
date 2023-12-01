@@ -1,5 +1,5 @@
 #include "shell.h"
-void commands(char *command, char *args)
+void commands(char *cmd, char *args[])
 {
 	pid_t pid;
 	int status;
@@ -7,20 +7,19 @@ void commands(char *command, char *args)
 	pid = fork();
 	if (pid == 0)
 	{
-		execve(command, args, NULL);
-	}
-	if (execve == -1)
+		if (execve(cmd, args, NULL) == -1)
 	{
-		perror(execve);
+		perror("execve");
 		exit(EXIT_FAILURE);
+	}
 	}
 	else if (pid < 0)
 	{
-		perror(fork);
+		perror("fork");
 		exit(EXIT_FAILURE);
 	}
 	else
 	{
-		waitpid(pid, &status, 0)
+		waitpid(pid, &status, 0);
 	}
 }
