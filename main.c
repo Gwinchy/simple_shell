@@ -18,6 +18,7 @@ int main(int argc, char **argv)
 			break;
 		}
 		token(input, args);
+		commands(argv[0], args);
 	}
 	return (0);
 }

@@ -14,4 +14,5 @@
 #define MAX_ARGS 256
 void prompt(void);
 void token(char input[], char *args[]);
+void commands(char *command, char *args);
 #endif
