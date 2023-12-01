@@ -13,7 +13,9 @@
 #include <errno.h>
 #define MAX_INPUT_SIZE 1014
 #define MAX_ARGS 256
+#define MAX_PATH_LENGTH 1024
 void prompt(void);
 void token(char input[], char *args[]);
 void commands(char *cmd, char *args[]);
+void handle_command(char *cmd, char *args[]);
 #endif
