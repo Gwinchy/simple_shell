@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <errno.h>
 #define MAX_INPUT_SIZE 1014
 #define MAX_ARGS 256
 void prompt(void);
