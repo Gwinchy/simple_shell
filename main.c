@@ -15,15 +15,11 @@ int main(int argc, char **argv)
 		prompt();
 		if (fgets(input, sizeof(input), stdin) == NULL)
 		{
-			break;
-		}
-		if (input == NULL)
-		{
-			break;
+			exit(EXIT_SUCCESS);
 		}
 		if (strncmp(input, "exit", 4) == 0)
 		{
-			break;
+			exit(EXIT_SUCCESS);
 		}
 		token(input, args);
 		handle_command(args[0], args);
