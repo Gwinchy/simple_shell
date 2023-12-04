@@ -17,6 +17,10 @@ int main(int argc, char **argv)
 		{
 			break;
 		}
+		if (input == NULL)
+		{
+			break;
+		}
 		if (strncmp(input, "exit", 4) == 0)
 		{
 			break;
