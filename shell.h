@@ -19,4 +19,5 @@ void prompt(void);
 void token(char input[], char *args[]);
 void commands(char *cmd, char *args[]);
 void handle_command(char *cmd, char *args[]);
+void sigint_handler(int sig);
 #endif

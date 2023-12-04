@@ -13,6 +13,7 @@ void commands(char *cmd, char *args[])
 	pid = fork();
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		if (execve(cmd, args, environ) == -1)
 	{
 		perror("execve");
@@ -26,6 +27,7 @@ void commands(char *cmd, char *args[])
 	}
 	else
 	{
+		signal(SIGINT, sigint_handler);
 		waitpid(pid, &status, 0);
 	}
 }
